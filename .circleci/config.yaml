@@ -1,0 +1,9 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: hasura/graphql-engine:v1.0.0-beta.2.cli-migrations
+    steps:
+      - checkout
+      - run: curl -L https://cli.hasura.io/install.sh | bash
+      - run: hasura migrate apply --endpoint=${HASURA_ENDPOINT} --admin-secret=${HASURA_GRAPHQL_ADMIN_SECRET}     
